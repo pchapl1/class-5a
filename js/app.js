@@ -12,24 +12,15 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sum(a, b) { //eslint-disable-line
+    
+    let total = a + b
+    let message = `The sum of ${a} and ${b} is ${total}.`
 
-    // iniitalize the array
     let myArr = []
-
-    let total = 0
-
-    for (let i = 0; i < arguments.length; i++) {
-         total += arguments[i]
-        
-    }
-
-    // push the sum of a and b to array
     myArr.push(total)
-
-    // create a new variable using template literal and push it into the array
-    myArr.push(`The sum of ${a} and ${b} is ${myArr[0]}.`)
-
+    myArr.push(message)
     return myArr
+
 }
 
 // Here is the test for sum(); uncomment it to run it
@@ -44,42 +35,22 @@ Write a function called multiply() that takes in two numbers as arguments and re
 "The product of 5 and 9 is 45."
 
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiply() function and see if the test passes.*/
-function testMultiply() { //eslint-disable-line
-    if (multiply(5,9)[0] === 45 && multiply(5,9)[1] === 'The product of 5 and 9 is 45.') {
-      console.log('%c TEST FOR multiply() PASSES', 'color: green');
-    } else {
-      console.log('%c TEST FOR multiply() FAILS', 'color: red');
-    }
-  }
+
 // Write your code here
 function multiply(a, b) { //eslint-disable-line
 
-    // initialize the array
-    let tempArr = []
-
-
-    // put the arguments in an array
-    for (let i = 0; i < arguments.length; i++) {
-        tempArr.push(arguments[i])
-    }
-
-    // initialize product
-    let product = 1
-
-    // loop through tempArr and start multiplying elements
-    for (let i = 0; i < tempArr.length; i++) {
-        product *= tempArr[i]
-        
-    }    
-
-    // initialize the new array
-    let myArr = []
-
-    // push the product of a and b to the array
-    myArr.push(product)
 
     // push value into the array
-    myArr[1] = `The product of ${a} and ${b} is ${myArr[0]}.`
+    // myArr[1] = `The product of ${a} and ${b} is ${myArr[0]}.`
+
+    let myArr = []
+
+    let myProduct = a * b
+
+    let message = `The product of ${a} and ${b} is ${myProduct}.`
+
+    myArr.push(myProduct)
+    myArr.push(message)
 
 
     return myArr
@@ -107,25 +78,16 @@ function sumAndMultiply(a, b, c) { //eslint-disable-line
     // initialize the array
     let myArr = []
 
-    // call the sum function
-    let sumNumbers = sum(a, b, c)
+    let mySum = sum(sum(a, b)[0], c)[0]
+    let myProd = multiply(multiply(a, b)[0], c)[0]
 
-    // push the summed number in myArr
-    myArr.push(sumNumbers[0])
+    let message1 = `${a} and ${b} and ${c} sum to ${mySum}.`
+    let message2 = `The product of ${a} and ${b} and ${c} is ${myProd}.`
 
-
-    // call the multiply function
-    let productNumbers = multiply(a, b, c)
-
-    // push the product into the array
-    myArr.push(productNumbers[0])
-
-    // push the string to array
-    myArr.push(`${a} and ${b} and ${c} sum to ${myArr[0]}.`)
-
-    // push the string to array
-    myArr.push(`The product of ${a} and ${b} and ${c} is ${myArr[1]}.`)
-
+    myArr.push(mySum)
+    myArr.push(myProd)
+    myArr.push(message1)
+    myArr.push(message2)
 
     return myArr
 
@@ -151,8 +113,26 @@ let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
 
+    // let ans1 = sum(sum(sumArr[0], sumArr[1]), sumArr[2])
+    let message = ''
+    let test = sumArr.reduce( (x, next, i)=>{
+        if (i < sumArr.length-1) {
+            message += next + ',' 
+        }
+        else {
+            message += next
+        }
+        
+        return sum(x, next)[0]
+    }, 0 )
+
+    message += ` was passed in as an array of numbers, and ${test} is their sum.`
+
+    return [test, message]
 }
 
+
+sumArray(testArray)
 // Here is the test for sumArray(); uncomment it to run it
 
 // testSumArray(testArray);
@@ -171,7 +151,7 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-
+    
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it

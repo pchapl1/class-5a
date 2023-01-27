@@ -151,11 +151,27 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
+
+        let message = 'The numbers 2,'
+        let test = multArr.reduce( (x, next, i)=>{
+            if (i < multArr.length-1) {
+                message += next + ',' 
+            }
+            else {
+                message += next
+            }
+
+            return multiply(x, next)[0]
+        } )
     
+        message += ` have a product of ${test}.`
+        console.log(test)
+        console.log(message)
+        return [test, message]
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyArray(testArray);
+testMultiplyArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
 

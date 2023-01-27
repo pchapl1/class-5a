@@ -16,16 +16,21 @@ function sum(a, b) { //eslint-disable-line
     // iniitalize the array
     let myArr = []
 
-    // insert the sum of a and b at the beginning of the array
-    myArr[0] = a + b
+    let total = 0
 
-    // create a new variable using template literal and insert it into the array
-    myArr[1] = `The sum of ${a} and ${b} is ${myArr[0]}.`
+    for (let i = 0; i < arguments.length; i++) {
+         total += arguments[i]
+        
+    }
+
+    // push the sum of a and b to array
+    myArr.push(total)
+
+    // create a new variable using template literal and push it into the array
+    myArr.push(`The sum of ${a} and ${b} is ${myArr[0]}.`)
 
     return myArr
 }
-
-
 
 // Here is the test for sum(); uncomment it to run it
 // testSum(4, 7);
@@ -39,18 +44,43 @@ Write a function called multiply() that takes in two numbers as arguments and re
 "The product of 5 and 9 is 45."
 
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiply() function and see if the test passes.*/
-
+function testMultiply() { //eslint-disable-line
+    if (multiply(5,9)[0] === 45 && multiply(5,9)[1] === 'The product of 5 and 9 is 45.') {
+      console.log('%c TEST FOR multiply() PASSES', 'color: green');
+    } else {
+      console.log('%c TEST FOR multiply() FAILS', 'color: red');
+    }
+  }
 // Write your code here
 function multiply(a, b) { //eslint-disable-line
 
     // initialize the array
+    let tempArr = []
+
+
+    // put the arguments in an array
+    for (let i = 0; i < arguments.length; i++) {
+        tempArr.push(arguments[i])
+    }
+
+    // initialize product
+    let product = 1
+
+    // loop through tempArr and start multiplying elements
+    for (let i = 0; i < tempArr.length; i++) {
+        product *= tempArr[i]
+        
+    }    
+
+    // initialize the new array
     let myArr = []
 
-    // set array at 0 to the product of a and b
-    myArr[0] = a * b
+    // push the product of a and b to the array
+    myArr.push(product)
 
-    // set array at index 1 to the desired string
+    // push value into the array
     myArr[1] = `The product of ${a} and ${b} is ${myArr[0]}.`
+
 
     return myArr
 }
@@ -73,6 +103,31 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
+
+    // initialize the array
+    let myArr = []
+
+    // call the sum function
+    let sumNumbers = sum(a, b, c)
+
+    // push the summed number in myArr
+    myArr.push(sumNumbers[0])
+
+
+    // call the multiply function
+    let productNumbers = multiply(a, b, c)
+
+    // push the product into the array
+    myArr.push(productNumbers[0])
+
+    // push the string to array
+    myArr.push(`${a} and ${b} and ${c} sum to ${myArr[0]}.`)
+
+    // push the string to array
+    myArr.push(`The product of ${a} and ${b} and ${c} is ${myArr[1]}.`)
+
+
+    return myArr
 
 }
 

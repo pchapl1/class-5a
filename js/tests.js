@@ -1,5 +1,4 @@
 'use strict';
-
 // You should not modify anything in this file, but feel free to look through it!
 
 function testSum() { //eslint-disable-line
@@ -49,3 +48,4 @@ function testMultiplyAnyArray() { //eslint-disable-line
     console.log('%c TEST FOR multiplyAnyArray() FAILS', 'color: red');
   }
 }
+
